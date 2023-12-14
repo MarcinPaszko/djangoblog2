@@ -1,26 +1,13 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <title>Blog dla programistów</title>
-</head>
-<body>
-    <h1>Witam na stronie bloga!</h1>
-    <h2>Jest to test</h2>
-    <h3>To są testowe wpisy</h3>
-    <h4>Sprawdzajace działanie kodu</h4>
-    <br>
-    <em>Wyrózniający tekst</em>
-    <strong>Pogrubiona wartość</strong>
+{% extends 'blog/base.html' %}
 
+{% block content %}
     {% for post in posts %}
-        <div>
-            {% if post.published_date %}
+            <div class="post">
+                <div class="data">
                 <p>opublikowany: {{ post.published_date }}</p>
-            {% endif %}
-            <h2><a href="">{{ post.title }}</a></h2>
+                </div>
+                <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
             <em>{{ post.text|linebreaksbr }}</em>
         </div>
     {% endfor %}
-</body>
-</html>
+{% endblock %}
